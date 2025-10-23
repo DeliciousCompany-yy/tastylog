@@ -31,7 +31,7 @@ jobs:
       - name: Run ESLint and save report
         working-directory: ./30_app
         run: |
-          npx eslint src > eslint-report.txt || echo "ESLint completed with errors"
+          npx eslint src > eslint-report.txt 2>&1 || echo "ESLint completed with errors"
 
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
