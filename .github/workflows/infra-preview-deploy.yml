@@ -28,10 +28,24 @@ jobs:
         working-directory: ./30_app
         run: npm install
 
+      - name: Install ESLint
+        working-directory: ./30_app
+        run: npm install eslint --save-dev
+
+      - name: Create ESLint config
+        working-directory: ./30_app
+        run: |
+          echo '{
+            "env": { "node": true, "es2021": true },
+            "extends": "eslint:recommended",
+            "parserOptions": { "ecmaVersion": 12 },
+            "rules": {}
+          }' > .eslintrc.json
+
       - name: Run ESLint and save report
         working-directory: ./30_app
         run: |
-          npx eslint src > eslint-report.txt 2>&1 || echo "ESLint completed with errors"
+          npx eslint src > eslint-report.txt 2>&1 || true
 
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
