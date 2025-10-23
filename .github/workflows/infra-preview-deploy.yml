@@ -28,27 +28,24 @@ jobs:
         working-directory: ./30_app
         run: npm install
 
-      - name: Install ESLint
+      - name: Run Lint (via npm script)
         working-directory: ./30_app
-        run: npm install eslint --save-dev
+        run: npm run lint || true
 
-      - name: Create ESLint config
-        working-directory: ./30_app
-        run: |
-          echo '{
-            "env": { "node": true, "es2021": true },
-            "extends": "eslint:recommended",
-            "parserOptions": { "ecmaVersion": 12 },
-            "rules": {}
-          }' > .eslintrc.json
-
-      - name: Run ESLint and save report
-        working-directory: ./30_app
-        run: |
-          npx eslint src > eslint-report.txt 2>&1 || true
-
-      - name: Upload ESLint report
+      - name: Upload ESLint summary report
         uses: actions/upload-artifact@v4
         with:
-          name: eslint-report
-          path: ./30_app/eslint-report.txt
+          name: eslint-summary
+          path: ./30_app/output/test/lint-summary.txt
+
+      - name: Upload ESLint HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-html
+          path: ./30_app/output/test/lint-results.html
+
+      - name: Upload ESLint JUnit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-junit
+          path: ./30_app/output/test/lint-results.xml
