@@ -5,15 +5,15 @@ on:
     branches:
       - main
     paths:
-      - 10_nfra/**
+      - 10_infra/**
       - .github/workflows/**
   workflow_dispatch:
 
 
 jobs:
   preview:
-    name: "Preiview"
-    run-on: ubuntsu-latest
+    name: "Preview"
+    runs-on: ubuntsu-latest
     steps:
       - run: |
           echo "Hello World"
