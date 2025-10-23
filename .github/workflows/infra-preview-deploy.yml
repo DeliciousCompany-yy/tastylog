@@ -1,0 +1,19 @@
+name: "infra-preview-deploy"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 10_nfra/**
+      - .github/workflows/**
+  workflow_dispatch:
+
+
+jobs:
+  preview:
+    name: "Preiview"
+    run-on: ubuntsu-latest
+    steps:
+      - run: |
+        echo "Hello World"
