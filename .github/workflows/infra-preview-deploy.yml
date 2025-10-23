@@ -24,3 +24,6 @@ jobs:
       - name: Install dependencies
         working-directory: ./30_app
         run: npm install
+      - name: Run ESLint
+        working-directory: ./30_app
+        run: npx eslint src
