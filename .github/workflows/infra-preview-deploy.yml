@@ -34,7 +34,7 @@ jobs:
           npx eslint src > eslint-report.txt || echo "ESLint completed with errors"
 
       - name: Upload ESLint report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: eslint-report
           path: ./30_app/eslint-report.txt
