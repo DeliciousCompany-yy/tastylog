@@ -15,5 +15,5 @@ jobs:
     name: "Preview"
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Hello World"
+      - name: Checkout repostitory
+      - uses: actions/checkout@v3
