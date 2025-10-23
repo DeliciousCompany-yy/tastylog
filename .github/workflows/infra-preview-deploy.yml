@@ -15,5 +15,5 @@ jobs:
     name: "Preview"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repostitory
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
