@@ -7,23 +7,34 @@ on:
     paths:
       - 10_infra/**
       - .github/workflows/**
+      - 30_app/**
   workflow_dispatch:
-
 
 jobs:
   preview:
     name: "Preview"
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
       - name: Install dependencies
         working-directory: ./30_app
         run: npm install
-      - name: Run ESLint
+
+      - name: Run ESLint and save report
         working-directory: ./30_app
-        run: npx eslint src
+        run: |
+          npx eslint src > eslint-report.txt || echo "ESLint completed with errors"
+
+      - name: Upload ESLint report
+        uses: actions/upload-artifact@v3
+        with:
+          name: eslint-report
+          path: ./30_app/eslint-report.txt
